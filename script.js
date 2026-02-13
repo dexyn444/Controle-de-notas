@@ -53,9 +53,20 @@ function alternarStatus(id) {
     renderizar();
 }
 
+// NOVA FUNÇÃO: EXCLUIR NF
+function excluirNF(id) {
+    if (confirm("Tem certeza que deseja excluir esta Nota Fiscal?")) {
+        dbNotas = dbNotas.filter(n => n.id !== id);
+        localStorage.setItem(DB_NF, JSON.stringify(dbNotas));
+        renderizar();
+    }
+}
+
 function renderizar() {
     const listHtml = document.getElementById('tabelaNfs');
     const tabsHtml = document.getElementById('abasDias');
+    if(!listHtml) return;
+    
     listHtml.innerHTML = ''; tabsHtml.innerHTML = '';
 
     const datas = [...new Set(dbNotas.map(n => n.data))].sort();
@@ -81,7 +92,14 @@ function renderizar() {
             <td><i class="fa fa-circle" style="color:${n.conferida ? 'green' : 'orange'}"></i></td>
             <td><strong>NF ${n.numero}</strong></td>
             <td>${n.data.split('-').reverse().join('/')}</td>
-            <td><button onclick="alternarStatus(${n.id})">${n.conferida ? 'Voltar' : 'OK'}</button></td>
+            <td>
+                <button class="${n.conferida ? 'btn-action-undo' : 'btn-action-ok'}" onclick="alternarStatus(${n.id})">
+                    ${n.conferida ? 'Voltar' : 'OK'}
+                </button>
+                <button class="btn-action-del" onclick="excluirNF(${n.id})" title="Excluir NF">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
         `;
         listHtml.appendChild(tr);
     });
@@ -99,7 +117,7 @@ function cadastrarUsuario() {
 
 function renderizarUsuarios() {
     const t = document.getElementById('tabelaUsuarios');
-    t.innerHTML = dbUsers.map(u => `<tr><td>${u.user}</td><td><button onclick="dbUsers=dbUsers.filter(x=>x.user!=='${u.user}');localStorage.setItem(DB_USER,JSON.stringify(dbUsers));renderizarUsuarios();">Remover</button></td></tr>`).join('');
+    t.innerHTML = dbUsers.map(u => `<tr><td>${u.user}</td><td><button class="btn-action-del" onclick="if(confirm('Remover usuário?')){dbUsers=dbUsers.filter(x=>x.user!=='${u.user}');localStorage.setItem(DB_USER,JSON.stringify(dbUsers));renderizarUsuarios();}">Remover</button></td></tr>`).join('');
 }
 
 // Init
@@ -107,5 +125,6 @@ document.getElementById('inputData').valueAsDate = new Date();
 if (sessionStorage.getItem('sessao')) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app-content').style.display = 'block';
+    document.getElementById('logged-user-name').innerText = sessionStorage.getItem('sessao');
     renderizar();
 }
