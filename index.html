@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise NF-Manager | Protheus Light</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen" class="login-overlay">
+        <div class="login-box">
+            <div class="login-logo">
+                <i class="fa fa-layer-group"></i>
+                <h2><span>Controle de notas ficais</span></h2>
+                <small>Acesso ao Sistema</small>
+            </div>
+            <div class="login-form">
+                <label>Usuário</label>
+                <input type="text" id="login-user" placeholder="admin">
+                <label>Senha</label>
+                <input type="password" id="login-pass" placeholder="****">
+                <button class="btn-primary" onclick="autenticar()">ENTRAR</button>
+                <p id="login-error" class="error-msg">Acesso negado.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-content" style="display: none;">
+        <header class="system-header">
+            <div class="brand">
+                <i class="fa fa-boxes-packing"></i>
+                <div>
+                    <h1>Gestão de Fluxo Fiscal</h1>
+                    <small>Operador: <strong id="logged-user-name">Admin</strong></small>
+                </div>
+            </div>
+            <div class="kpi-group">
+                <div class="kpi-item">
+                    <span class="kpi-val" id="resumoTotal">0</span>
+                    <span class="kpi-lab">Total na Aba</span>
+                </div>
+                <div class="kpi-item green">
+                    <span class="kpi-val" id="resumoSucesso">0</span>
+                    <span class="kpi-lab">Conferidas</span>
+                </div>
+                <button class="btn-logout" onclick="logout()"><i class="fa fa-power-off"></i> Sair</button>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <aside class="sidebar">
+                <div class="menu-label">MÓDULOS</div>
+                <button onclick="trocarModulo('conferencia')" id="btn-mod-conf" class="menu-btn active">
+                    <i class="fa fa-file-invoice"></i> Conferência de NFs
+                </button>
+                <button onclick="trocarModulo('usuarios')" id="btn-mod-user" class="menu-btn">
+                    <i class="fa fa-user-plus"></i> Cadastrar Usuário
+                </button>
+            </aside>
+
+            <section class="workspace">
+                
+                <div id="mod-conferencia" class="content-module">
+                    <div class="operation-bar">
+                        <div class="input-field">
+                            <label>Nº Nota Fiscal</label>
+                            <input type="number" id="inputNF" placeholder="000000">
+                        </div>
+                        <div class="input-field">
+                            <label>Data</label>
+                            <input type="date" id="inputData">
+                        </div>
+                        <button class="btn-primary" onclick="adicionarNF()">LANÇAR NF</button>
+                    </div>
+                    
+                    <nav class="tabs-nav"><ul id="abasDias"></ul></nav>
+
+                    <div class="table-container">
+                        <table class="grid-system">
+                            <thead>
+                                <tr>
+                                    <th width="40">Status</th>
+                                    <th>Nº Nota Fiscal</th>
+                                    <th>Data Entrada</th>
+                                    <th width="100">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaNfs"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="mod-usuarios" class="content-module" style="display: none;">
+                    <div class="operation-bar">
+                        <div class="input-field">
+                            <label>Novo Usuário</label>
+                            <input type="text" id="new-user" placeholder="Login">
+                        </div>
+                        <div class="input-field">
+                            <label>Senha</label>
+                            <input type="password" id="new-pass" placeholder="Senha">
+                        </div>
+                        <button class="btn-primary" onclick="cadastrarUsuario()">CADASTRAR</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="grid-system">
+                            <thead>
+                                <tr><th>Utilizador</th><th>Ações</th></tr>
+                            </thead>
+                            <tbody id="tabelaUsuarios"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

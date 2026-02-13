@@ -1,0 +1,56 @@
+:root {
+    --totvs-blue: #004a92;
+    --bg-light: #f4f7f9;
+    --border: #d1d9e0;
+    --success: #28a745;
+    --warning: #f39c12;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Tahoma', sans-serif; background: var(--bg-light); font-size: 11px; }
+
+/* Login */
+.login-overlay { position: fixed; inset: 0; background: #2c3e50; display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.login-box { background: #fff; width: 320px; padding: 30px; border-radius: 4px; border-top: 5px solid var(--totvs-blue); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.login-logo { text-align: center; margin-bottom: 20px; }
+.login-logo i { font-size: 3rem; color: var(--totvs-blue); }
+.login-form label { display: block; font-weight: bold; margin-bottom: 5px; }
+.login-form input { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; }
+
+/* Layout Geral */
+.system-header { background: #fff; padding: 10px 30px; border-bottom: 2px solid var(--totvs-blue); display: flex; justify-content: space-between; align-items: center; }
+.brand h1 { font-size: 14px; text-transform: uppercase; color: var(--totvs-blue); }
+.kpi-group { display: flex; gap: 30px; align-items: center; }
+.kpi-val { font-size: 18px; font-weight: bold; color: #333; display: block; }
+.green .kpi-val { color: var(--success); }
+
+.main-layout { display: flex; height: calc(100vh - 65px); }
+
+/* Sidebar */
+.sidebar { width: 220px; background: #fff; border-right: 1px solid var(--border); padding: 10px; }
+.menu-label { font-size: 10px; color: #888; padding: 10px; font-weight: bold; }
+.menu-btn { width: 100%; text-align: left; padding: 12px; margin-bottom: 5px; border: none; background: none; cursor: pointer; border-radius: 4px; color: #555; }
+.menu-btn:hover { background: #f0f0f0; }
+.menu-btn.active { background: var(--totvs-blue); color: #fff; font-weight: bold; }
+
+/* Conteúdo */
+.workspace { flex: 1; display: flex; flex-direction: column; padding: 20px; }
+.operation-bar { background: #fff; padding: 15px; border: 1px solid var(--border); display: flex; gap: 15px; align-items: flex-end; margin-bottom: 20px; }
+.input-field { display: flex; flex-direction: column; gap: 4px; }
+.input-field label { font-weight: bold; }
+input { padding: 6px; border: 1px solid var(--border); border-radius: 2px; }
+
+.btn-primary { background: var(--totvs-blue); color: #fff; border: none; padding: 8px 15px; cursor: pointer; font-weight: bold; border-radius: 2px; }
+
+/* Abas e Grid */
+.tabs-nav { background: #e0e0e0; padding-top: 5px; border-bottom: 1px solid var(--border); }
+.tabs-nav ul { list-style: none; display: flex; padding-left: 10px; }
+.tabs-nav li { padding: 8px 15px; cursor: pointer; background: #ccc; border: 1px solid var(--border); border-bottom: none; margin-right: 2px; }
+.tabs-nav li.active { background: #fff; border-top: 2px solid var(--totvs-blue); margin-top: -2px; font-weight: bold; }
+
+.table-container { background: #fff; border: 1px solid var(--border); flex: 1; overflow-y: auto; }
+.grid-system { width: 100%; border-collapse: collapse; }
+.grid-system th { background: #f8f8f8; padding: 10px; text-align: left; border: 1px solid var(--border); }
+.grid-system td { padding: 8px 10px; border: 1px solid #eee; }
+
+.btn-logout { background: none; border: 1px solid red; color: red; padding: 5px 10px; cursor: pointer; border-radius: 4px; }
