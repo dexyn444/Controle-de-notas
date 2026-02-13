@@ -3,6 +3,7 @@
     --bg-light: #f4f7f9;
     --border: #d1d9e0;
     --success: #28a745;
+    --danger: #dc3545;
     --warning: #f39c12;
 }
 
@@ -52,5 +53,11 @@ input { padding: 6px; border: 1px solid var(--border); border-radius: 2px; }
 .grid-system { width: 100%; border-collapse: collapse; }
 .grid-system th { background: #f8f8f8; padding: 10px; text-align: left; border: 1px solid var(--border); }
 .grid-system td { padding: 8px 10px; border: 1px solid #eee; }
+.grid-system tr:hover { background-color: #f9f9f9; }
+
+/* Botões de Ação na Tabela */
+.btn-action-ok { background: var(--success); color: white; border: none; padding: 5px 10px; border-radius: 2px; cursor: pointer; }
+.btn-action-undo { background: var(--warning); color: white; border: none; padding: 5px 10px; border-radius: 2px; cursor: pointer; }
+.btn-action-del { background: var(--danger); color: white; border: none; padding: 5px 10px; border-radius: 2px; cursor: pointer; margin-left: 5px; }
 
 .btn-logout { background: none; border: 1px solid red; color: red; padding: 5px 10px; cursor: pointer; border-radius: 4px; }
