@@ -22,7 +22,7 @@
                 <label>Senha</label>
                 <input type="password" id="login-pass" placeholder="****">
                 <button class="btn-primary" onclick="autenticar()">ENTRAR</button>
-                <p id="login-error" class="error-msg">Acesso negado.</p>
+                <p id="login-error" class="error-msg" style="display:none; color:red; margin-top:10px;">Acesso negado.</p>
             </div>
         </div>
     </div>
@@ -84,7 +84,7 @@
                                     <th width="40">Status</th>
                                     <th>Nº Nota Fiscal</th>
                                     <th>Data Entrada</th>
-                                    <th width="100">Ação</th>
+                                    <th width="150">Ações</th>
                                 </tr>
                             </thead>
                             <tbody id="tabelaNfs"></tbody>
